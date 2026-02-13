@@ -1,6 +1,6 @@
 [package]
 name = "survey-label-exporter"
-version = "0.0.3"
+version = "0.0.4"
 description = "Survey Label Exporter"
 authors = ["PelAtlas"]
 edition = "2021"
