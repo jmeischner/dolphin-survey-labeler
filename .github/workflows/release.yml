@@ -9,6 +9,8 @@ on:
 
 jobs:
   build-and-release:
+    env:
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
     permissions:
       contents: write
     strategy:
@@ -80,14 +82,18 @@ jobs:
       - name: Build release notes
         shell: bash
         run: |
-          git fetch origin main --tags
-          prev_tag=$(git tag --merged origin/main --sort=-v:refname | grep -v "^${TAG_NAME}$" | head -n 1)
+          git fetch origin "${DEFAULT_BRANCH}" --tags
+          if git rev-parse --verify "origin/${DEFAULT_BRANCH}" >/dev/null 2>&1; then
+            prev_tag=$(git tag --merged "origin/${DEFAULT_BRANCH}" --sort=-v:refname | grep -v "^${TAG_NAME}$" | head -n 1 || true)
+          else
+            prev_tag=$(git tag --sort=-v:refname | grep -v "^${TAG_NAME}$" | head -n 1 || true)
+          fi
           if [ -n "$prev_tag" ]; then
             range="${prev_tag}..${TAG_NAME}"
           else
             range="${TAG_NAME}"
           fi
-          notes=$(git log --pretty=format:"- %s" $range)
+          notes=$(git log --pretty=format:"- %s" $range || true)
           if [ -z "$notes" ]; then
             notes="- No changes found."
           fi
