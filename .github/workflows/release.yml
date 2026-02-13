@@ -98,7 +98,7 @@ jobs:
             notes="- No changes found."
           fi
           {
-            echo "RELEASE_BODY<<'EOF'"
+            echo "RELEASE_BODY<<EOF"
             echo "## Changelog"
             if [ -n "$prev_tag" ]; then
               echo "Changes since ${prev_tag}:"
