@@ -941,7 +941,7 @@ mod tests {
         let rules = Rules {
             extensions: vec![".jpg".to_string()],
             survey_id_regex_detected: "(?i)\\b(\\d{8}_[A-Z]{2}(?:_[A-Z]{2})?)\\b".to_string(),
-            survey_id_regex_base: "(?i)\\b(\\d{8}_[A-Z]{2})\\b".to_string(),
+            survey_id_regex_base: "(?i)\\b(\\d{8}_[A-Z]{2})(?:_[A-Z]{2})?\\b".to_string(),
             image_id_regex: default_image_id_regex(),
             graded_priority_ind_regex: "(?i)\\bind".to_string(),
             graded_priority_secondary_tokens: vec!["best".to_string()],
