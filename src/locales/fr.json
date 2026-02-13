@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "Exportateur d'etiquettes",
+    "subtitle": "Generez des labels dauphin depuis les dossiers grades"
+  },
+  "nav": {
+    "root": "Scan racine",
+    "single": "Paire unique",
+    "settings": "Regles"
+  },
+  "common": {
+    "browse": "Parcourir",
+    "preview": "Apercu",
+    "run": "Lancer",
+    "save": "Enregistrer",
+    "reset": "Reinitialiser",
+    "language": "Langue",
+    "openOutput": "Ouvrir le dossier de sortie",
+    "loading": "Traitement...",
+    "error": "Erreur"
+  },
+  "root": {
+    "title": "Scan racine",
+    "gradedRoot": "Dossier racine grade",
+    "rawRoot": "Dossier racine brut",
+    "outputDir": "Dossier de sortie",
+    "options": "Options",
+    "writePerSurvey": "Ecrire un CSV par survey",
+    "writeMerged": "Ecrire un CSV fusionne",
+    "mergedFilename": "Nom du CSV fusionne",
+    "problemsFilename": "Nom du CSV problemes",
+    "perSurveyDirname": "Nom du dossier par survey",
+    "previewTitle": "Apercu",
+    "noPreview": "Aucun apercu",
+    "table": {
+      "baseKey": "Cle de base",
+      "rawPath": "Chemin brut",
+      "gradedPath": "Chemin grade",
+      "status": "Statut",
+      "rawCount": "Nb brut",
+      "gradedCount": "Nb grade"
+    }
+  },
+  "single": {
+    "title": "Paire unique",
+    "gradedDir": "Dossier grade",
+    "rawDir": "Dossier brut",
+    "outputDir": "Dossier de sortie",
+    "surveyOverride": "ID survey (optionnel)",
+    "outputFilename": "Nom du CSV de sortie"
+  },
+  "settings": {
+    "title": "Regles",
+    "extensions": "Extensions (une par ligne)",
+    "detectedRegex": "Regex ID detecte",
+    "baseRegex": "Regex cle de base",
+    "imageIdRegex": "Regex ID image (groupe 1)",
+    "indRegex": "Regex priorite IND",
+    "secondaryTokens": "Tokens secondaires (un par ligne)",
+    "negativeTokens": "Tokens negatifs (un par ligne)",
+    "positiveTokens": "Tokens positifs (un par ligne)",
+    "helperImageIdRegex": "Le groupe 1 est utilise comme ID image pour l'appariement.",
+    "helperTokens": "Un token par ligne. '*' signifie tout.",
+    "saveSuccess": "Regles enregistrees",
+    "resetSuccess": "Regles reinitialisees"
+  },
+  "summary": {
+    "title": "Resume",
+    "processedSurveys": "Surveys traites",
+    "totalRows": "Lignes totales",
+    "dolphinYes": "Dauphin oui",
+    "dolphinNo": "Dauphin non",
+    "ambiguityWarnings": "Avertissements ID",
+    "problemsCount": "Problemes",
+    "mergedCsv": "CSV fusionne",
+    "problemsCsv": "CSV problemes"
+  },
+  "progress": {
+    "label": "Traitement",
+    "filesProcessed": "Fichiers"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "Survey Label Exporter",
+    "subtitle": "Generate dolphin labels from graded surveys"
+  },
+  "nav": {
+    "root": "Root Scan",
+    "single": "Single Pair",
+    "settings": "Settings"
+  },
+  "common": {
+    "browse": "Browse",
+    "preview": "Preview",
+    "run": "Run",
+    "save": "Save",
+    "reset": "Reset to default",
+    "language": "Language",
+    "openOutput": "Open output folder",
+    "loading": "Working...",
+    "error": "Error"
+  },
+  "root": {
+    "title": "Root Scan",
+    "gradedRoot": "Graded root folder",
+    "rawRoot": "Raw root folder",
+    "outputDir": "Output folder",
+    "options": "Options",
+    "writePerSurvey": "Write per-survey CSVs",
+    "writeMerged": "Write merged CSV",
+    "mergedFilename": "Merged filename",
+    "problemsFilename": "Problems filename",
+    "perSurveyDirname": "Per-survey folder name",
+    "previewTitle": "Preview",
+    "noPreview": "No preview yet",
+    "table": {
+      "baseKey": "Base key",
+      "rawPath": "Raw path",
+      "gradedPath": "Graded path",
+      "status": "Status",
+      "rawCount": "Raw count",
+      "gradedCount": "Graded count"
+    }
+  },
+  "single": {
+    "title": "Single Pair",
+    "gradedDir": "Graded folder",
+    "rawDir": "Raw folder",
+    "outputDir": "Output folder",
+    "surveyOverride": "Survey ID override (optional)",
+    "outputFilename": "Output CSV filename"
+  },
+  "settings": {
+    "title": "Rules",
+    "extensions": "Extensions (one per line)",
+    "detectedRegex": "Detected survey ID regex",
+    "baseRegex": "Base key regex",
+    "imageIdRegex": "Image ID regex (capture group 1)",
+    "indRegex": "IND priority regex",
+    "secondaryTokens": "Secondary tokens (one per line)",
+    "negativeTokens": "Negative tokens (one per line)",
+    "positiveTokens": "Positive tokens (one per line)",
+    "helperImageIdRegex": "Capture group 1 is used as the image id for matching.",
+    "helperTokens": "Use one token per line. '*' means match everything.",
+    "saveSuccess": "Rules saved",
+    "resetSuccess": "Rules reset to default"
+  },
+  "summary": {
+    "title": "Run summary",
+    "processedSurveys": "Processed surveys",
+    "totalRows": "Total rows",
+    "dolphinYes": "Dolphin yes",
+    "dolphinNo": "Dolphin no",
+    "ambiguityWarnings": "File ID warnings",
+    "problemsCount": "Problems",
+    "mergedCsv": "Merged CSV",
+    "problemsCsv": "Problems CSV"
+  },
+  "progress": {
+    "label": "Processing",
+    "filesProcessed": "Files"
+  }
+}

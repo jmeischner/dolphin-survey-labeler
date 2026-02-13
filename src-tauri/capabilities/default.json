@@ -1,0 +1,12 @@
+{
+  "identifier": "default",
+  "description": "Default capabilities",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "dialog:default",
+    "shell:default"
+  ]
+}

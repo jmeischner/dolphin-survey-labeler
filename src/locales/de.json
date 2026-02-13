@@ -1,0 +1,82 @@
+{
+  "app": {
+    "title": "Survey Label Exporter",
+    "subtitle": "Delfin-Labels aus bewerteten Surveys erzeugen"
+  },
+  "nav": {
+    "root": "Root-Scan",
+    "single": "Einzelnes Paar",
+    "settings": "Regeln"
+  },
+  "common": {
+    "browse": "Auswahlen",
+    "preview": "Vorschau",
+    "run": "Starten",
+    "save": "Speichern",
+    "reset": "Zurucksetzen",
+    "language": "Sprache",
+    "openOutput": "Ausgabeordner offnen",
+    "loading": "Arbeite...",
+    "error": "Fehler"
+  },
+  "root": {
+    "title": "Root-Scan",
+    "gradedRoot": "Graded-Stammordner",
+    "rawRoot": "Raw-Stammordner",
+    "outputDir": "Ausgabeordner",
+    "options": "Optionen",
+    "writePerSurvey": "CSV pro Survey schreiben",
+    "writeMerged": "Zusammengefuhrte CSV",
+    "mergedFilename": "Name der Gesamtdatei",
+    "problemsFilename": "Name der Problems-Datei",
+    "perSurveyDirname": "Ordnername pro Survey",
+    "previewTitle": "Vorschau",
+    "noPreview": "Noch keine Vorschau",
+    "table": {
+      "baseKey": "Base-Key",
+      "rawPath": "Raw-Pfad",
+      "gradedPath": "Graded-Pfad",
+      "status": "Status",
+      "rawCount": "Raw-Anzahl",
+      "gradedCount": "Graded-Anzahl"
+    }
+  },
+  "single": {
+    "title": "Einzelnes Paar",
+    "gradedDir": "Graded-Ordner",
+    "rawDir": "Raw-Ordner",
+    "outputDir": "Ausgabeordner",
+    "surveyOverride": "Survey-ID uberschreiben (optional)",
+    "outputFilename": "Name der CSV-Ausgabe"
+  },
+  "settings": {
+    "title": "Regeln",
+    "extensions": "Erweiterungen (eine pro Zeile)",
+    "detectedRegex": "Regex fur erkannte ID",
+    "baseRegex": "Regex fur Base-Key",
+    "imageIdRegex": "Bild-ID Regex (Gruppe 1)",
+    "indRegex": "IND-Prioritatsregex",
+    "secondaryTokens": "Sekundare Tokens (eine pro Zeile)",
+    "negativeTokens": "Negative Tokens (eine pro Zeile)",
+    "positiveTokens": "Positive Tokens (eine pro Zeile)",
+    "helperImageIdRegex": "Gruppe 1 wird als Bild-ID fur das Matching verwendet.",
+    "helperTokens": "Ein Token pro Zeile. '*' bedeutet alles.",
+    "saveSuccess": "Regeln gespeichert",
+    "resetSuccess": "Regeln zuruckgesetzt"
+  },
+  "summary": {
+    "title": "Zusammenfassung",
+    "processedSurveys": "Verarbeitete Surveys",
+    "totalRows": "Gesamtzeilen",
+    "dolphinYes": "Delfin ja",
+    "dolphinNo": "Delfin nein",
+    "ambiguityWarnings": "File-ID-Warnungen",
+    "problemsCount": "Probleme",
+    "mergedCsv": "Zusammengefuhrte CSV",
+    "problemsCsv": "Problems-CSV"
+  },
+  "progress": {
+    "label": "Verarbeitung",
+    "filesProcessed": "Dateien"
+  }
+}
