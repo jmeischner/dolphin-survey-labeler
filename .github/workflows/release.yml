@@ -117,7 +117,7 @@ jobs:
           tagName: ${{ env.TAG_NAME }}
           releaseName: ${{ env.TAG_NAME }}
           releaseBody: ${{ env.RELEASE_BODY }}
-          draft: false
+          releaseDraft: false
           prerelease: ${{ env.PRERELEASE }}
           projectPath: .
 
