@@ -2,6 +2,21 @@
 
 Cross-platform desktop app (Tauri v2 + React + TypeScript) that labels raw survey images as Dolphin Yes/No by matching against graded folders.
 
+## Release Workflow
+
+Versionen aktualisieren und Release bauen:
+
+```bash
+npm run bump-version -- X.Y.Z
+git add .
+git commit -m "release: vX.Y.Z"
+git tag vX.Y.Z
+git push origin main
+git push origin vX.Y.Z
+```
+
+GitHub Actions erstellt dann automatisch die Release-Seite und hängt Installer + ZIPs an.
+
 ## Features
 - Root Scan mode: pick Graded root, Raw root, Output folder, preview matching, then run.
 - Single Pair mode: process one graded/raw pair with optional survey ID override.
@@ -41,6 +56,17 @@ Windows (from Windows machine or CI with Windows):
 ```bash
 npm run build:tauri
 ```
+
+## Releasing
+
+Create and push a version tag:
+
+```bash
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+
+GitHub Actions will build and attach installers to the Release page.
 
 ## Rules Configuration
 

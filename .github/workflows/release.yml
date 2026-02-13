@@ -1,0 +1,127 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  release:
+    types: [created]
+
+jobs:
+  build-and-release:
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect package manager
+        id: pm
+        shell: bash
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            echo "pm=pnpm" >> "$GITHUB_OUTPUT"
+          else
+            echo "pm=npm" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+          cache: ${{ steps.pm.outputs.pm }}
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          if [ "${{ steps.pm.outputs.pm }}" = "pnpm" ]; then
+            corepack enable
+            pnpm install --frozen-lockfile
+          else
+            npm ci
+          fi
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: "src-tauri -> target"
+
+      - name: Resolve tag name (release)
+        if: github.event_name == 'release'
+        shell: bash
+        run: |
+          echo "TAG_NAME=${{ github.event.release.tag_name }}" >> "$GITHUB_ENV"
+
+      - name: Resolve tag name (push)
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          echo "TAG_NAME=${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
+
+      - name: Resolve prerelease flag
+        shell: bash
+        run: |
+          if [[ "$TAG_NAME" == *-rc* || "$TAG_NAME" == *-beta* ]]; then
+            echo "PRERELEASE=true" >> "$GITHUB_ENV"
+          else
+            echo "PRERELEASE=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build release notes
+        shell: bash
+        run: |
+          git fetch origin main --tags
+          prev_tag=$(git tag --merged origin/main --sort=-v:refname | grep -v "^${TAG_NAME}$" | head -n 1)
+          if [ -n "$prev_tag" ]; then
+            range="${prev_tag}..${TAG_NAME}"
+          else
+            range="${TAG_NAME}"
+          fi
+          notes=$(git log --pretty=format:"- %s" $range)
+          if [ -z "$notes" ]; then
+            notes="- No changes found."
+          fi
+          {
+            echo "RELEASE_BODY<<'EOF'"
+            echo "## Changelog"
+            if [ -n "$prev_tag" ]; then
+              echo "Changes since ${prev_tag}:"
+            else
+              echo "Initial release."
+            fi
+            echo "$notes"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
+      - name: Build and publish
+        uses: tauri-apps/tauri-action@v0.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ env.TAG_NAME }}
+          releaseName: ${{ env.TAG_NAME }}
+          releaseBody: ${{ env.RELEASE_BODY }}
+          draft: false
+          prerelease: ${{ env.PRERELEASE }}
+          projectPath: .
+
+      - name: Zip bundle directory
+        shell: bash
+        run: |
+          tar -a -c -f "bundle-${{ runner.os }}.zip" -C src-tauri/target/release bundle
+
+      - name: Upload bundle zip
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-${{ runner.os }}-${{ env.TAG_NAME }}
+          path: bundle-${{ runner.os }}.zip
